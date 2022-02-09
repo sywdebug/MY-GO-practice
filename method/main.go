@@ -8,9 +8,16 @@ type Person struct {
 }
 
 func (person Person) test() {
+	fmt.Println(person)
 	person.map1["key"] = "yyyyy"
 	person.map1["key2"] = "qwe"
-	fmt.Println(person)
+}
+
+func (person *Person) test2() {
+	fmt.Println("17",person)
+	fmt.Println("18",*person)
+	person.map1["key"] = "test2"
+	person.map1["key2"] = "test22"
 }
 
 func (person Person) speak() {
@@ -33,6 +40,7 @@ func (person Person) jisuan2(n int) {
 func (person Person) getSum(n1, n2 int) int {
 	return n1 + n2
 }
+
 func main() {
 	var person = Person{
 		Name: "sywdbeug",
@@ -46,4 +54,8 @@ func main() {
 	person.jisuan()
 	person.jisuan2(10)
 	fmt.Println(person.getSum(10, 20))
+	person.test()
+	fmt.Println(person)
+	person.test2()
+	fmt.Println(person)
 }

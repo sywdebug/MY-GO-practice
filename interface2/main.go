@@ -13,32 +13,30 @@ type AInterface interface {
 	CInterface
 	test03()
 }
+
 type Stu struct {
 }
 
-func (s Stu) test01() {
+func (stu Stu) test01() {
 
 }
-func (s Stu) test02() {
+func (stu Stu) test02() {
 
 }
-func (s Stu) test03() {
+func (stu Stu) test03() {
 
 }
+
 func main() {
-	var s Stu
-	var a AInterface = s
+	var stu Stu
+	var a AInterface = stu
 	a.test01()
-	var i interface{}
-	fmt.Println(i)
-	i = "asd"
-	fmt.Println(i)
-	i = 182
-	fmt.Println(i)
-	i = 123.4524
-	fmt.Println(i)
-	i = []int{1, 2, 3, 4}
-	fmt.Println(i)
-	i = false
-	fmt.Println(i)
+	var b BInterface = stu
+	b.test01()
+
+	var t interface{}
+	t = 8.8
+	fmt.Printf("%T\n",t)
+	t = "asd"
+	fmt.Printf("%T\n",t)
 }

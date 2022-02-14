@@ -7,12 +7,8 @@ type Usb interface {
 	Stop()
 }
 
-type Usb2 interface {
-	Start2()
-	Stop2()
-}
-
 type Phone struct {
+	name string
 }
 
 func (p Phone) Start() {
@@ -22,7 +18,12 @@ func (p Phone) Stop() {
 	fmt.Println("手机停止工作")
 }
 
+func (p Phone) Call() {
+	fmt.Println(p.name, "手机 打电话")
+}
+
 type Camera struct {
+	name string
 }
 
 func (c Camera) Start() {
@@ -37,14 +38,21 @@ type Computer struct {
 
 func (c Computer) Working(usb Usb) {
 	usb.Start()
+	if phone, ok := usb.(Phone); ok {
+		phone.Call()
+	}
 	usb.Stop()
 }
 
 func main() {
-	computer := Computer{}
-	phone := Phone{}
-	camera := Camera{}
-
-	computer.Working(phone)
-	computer.Working(camera)
+	usbArr := [...]Usb{
+		Phone{"vivo"},
+		Phone{"oppo"},
+		Camera{"哈哈"},
+	}
+	fmt.Println(usbArr)
+	var computer Computer
+	for _, v := range usbArr {
+		computer.Working(v)
+	}
 }

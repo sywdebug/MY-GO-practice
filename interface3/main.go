@@ -11,43 +11,41 @@ type Hero struct {
 	Age  int
 }
 
-type HeroSlicec []Hero
+type HeroSlice []Hero
 
-func (hs HeroSlicec) Len() int {
+func (hs HeroSlice) Len() int {
 	return len(hs)
 }
-
-func (hs HeroSlicec) Less(i, j int) bool {
-	return hs[i].Age > hs[j].Age
+func (hs HeroSlice) Less(i, j int) bool {
+	return hs[i].Name > hs[j].Name
 }
-func (hs HeroSlicec) Swap(i, j int) {
-	temp := hs[i]
-	hs[i] = hs[j]
-	hs[j] = temp
+func (hs HeroSlice) Swap(i, j int) {
+	// temp := hs[i]
+	// hs[i] = hs[j]
+	// hs[j] = temp
+	hs[i], hs[j] = hs[j], hs[i]
 }
-
 func main() {
-	var intSlice = []int{0, 4, 78, 125, 45, 12, 235, 45}
+	intSlice := []int{0, -1, 10, 7, 90}
 	sort.Ints(intSlice)
 	fmt.Println(intSlice)
-
-	var heroes HeroSlicec
+	fmt.Println()
+	fmt.Println()
+	fmt.Println()
+	heroes := HeroSlice{}
 	for i := 0; i < 10; i++ {
-		var hero = Hero{
+		hero := Hero{
 			Name: fmt.Sprintf("英雄%d", rand.Intn(100)),
 			Age:  rand.Intn(100),
 		}
 		heroes = append(heroes, hero)
 	}
-	fmt.Println(heroes)
 	for _, v := range heroes {
-		fmt.Println(v)
+		fmt.Println("前", v)
 	}
-	fmt.Println()
-	fmt.Println()
 	fmt.Println()
 	sort.Sort(heroes)
 	for _, v := range heroes {
-		fmt.Println(v)
+		fmt.Println("后", v)
 	}
 }
